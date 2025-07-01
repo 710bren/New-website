@@ -1,3 +1,14 @@
+/* Prevent socials from being clickable and visible while hidden */
+.socials-fixed-wrapper {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s;
+}
+
+.socials-fixed-wrapper.hide {
+    opacity: 0;
+    pointer-events: none; /* default: not clickable until visible */
+}
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -144,6 +155,12 @@ main {
     opacity: 0;
     transform: translateY(-60px) scale(0.8);
     pointer-events: none;
+}
+
+/* Prevent links from being clickable while hidden */
+.socials-fixed-wrapper.hide .social-link {
+    pointer-events: none !important;
+}
 }
 
 .socials-blue-box {
