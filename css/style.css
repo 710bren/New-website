@@ -2,6 +2,21 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #23272a;
+    /* Add a subtle animated diagonal lines overlay for texture */
+    position: relative;
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 16px);
+    animation: bg-move 6s linear infinite;
+}
+@keyframes bg-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 64px 64px; }
 }
 
 .info-bar {
@@ -122,6 +137,9 @@ main {
     background: transparent;
     transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
 }
+.socials-fixed-wrapper .outer-box, .socials-fixed-wrapper .social-link {
+    pointer-events: auto;
+}
 .socials-fixed-wrapper.hide {
     opacity: 0;
     transform: translateY(-60px) scale(0.8);
@@ -129,7 +147,7 @@ main {
 }
 
 .socials-blue-box {
-    max-width: 400px;
+    max-width: 520px;
     margin: 4rem auto 6rem auto;
     background: linear-gradient(to bottom, #f7f7f4 0%, #e0e0e0 100%);
     border-radius: 18px;
@@ -143,6 +161,7 @@ main {
     color: #222;
     font-size: 2rem;
     font-weight: 700;
+    letter-spacing: inherit;
 }
 
 .social-links-grid {
@@ -152,7 +171,6 @@ main {
     align-items: stretch;
     margin-top: 1.5rem;
 }
-
 .social-link {
     display: flex;
     align-items: center;
@@ -161,14 +179,24 @@ main {
     border-radius: 12px;
     margin: 0;
     padding: 1rem;
-    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s, transform 0.1s;
     box-shadow: 0 6px 24px rgba(34,34,34,0.18), 0 1.5px 6px rgba(34,34,34,0.08);
     cursor: pointer;
     text-decoration: none;
     color: #222;
     font-size: 1.1rem;
     font-weight: 500;
+    border: none;
+    outline: none;
+    appearance: none;
+    pointer-events: auto;
+    z-index: 1;
 }
+.social-link:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(34,34,34,0.12);
+}
+
 .social-link:hover {
     background: #222;
     color: #fff;
@@ -181,6 +209,14 @@ main {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+}
+.social-link .icon img {
+    filter: none;
+    transition: filter 0.2s, opacity 0.2s;
+}
+.social-link:hover .icon img {
+    filter: brightness(0) invert(1);
+    opacity: 1;
 }
 
 .footer-fixed-wrapper {
@@ -255,4 +291,23 @@ main {
     max-width: 320px;
     margin: 0;
     box-shadow: 0 6px 24px rgba(34,34,34,0.18), 0 1.5px 6px rgba(34,34,34,0.08);
+}
+
+.outer-box {
+    max-width: 520px;
+    margin: 4rem auto 6rem auto;
+    background: linear-gradient(to bottom, #f7f7f4 0%, #e0e0e0 100%);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(34,34,34,0.13);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: #222;
+    pointer-events: auto;
+}
+.outer-box h2 {
+    margin-bottom: 2rem;
+    color: #222;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
 }
