@@ -1,3 +1,56 @@
+
+/* Responsive font and layout improvements for mobile and scaling */
+html {
+  font-size: 18px;
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 16px;
+  }
+  .center-title {
+    font-size: 2.2rem;
+  }
+  .social-link {
+    font-size: 1.1rem;
+  }
+  .outer-box {
+    max-width: 95vw;
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 15px;
+  }
+  .center-title {
+    font-size: 1.7rem;
+  }
+  .social-link {
+    font-size: 1rem;
+  }
+  .outer-box {
+    max-width: 99vw;
+    padding: 0.7rem;
+  }
+  .social-links-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 13px;
+  }
+  .center-title {
+    font-size: 1.2rem;
+  }
+  .outer-box {
+    padding: 0.3rem;
+  }
+}
 /* Prevent socials from being clickable and visible while hidden */
 .socials-fixed-wrapper {
     opacity: 1;
@@ -13,21 +66,13 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #23272a;
-    /* Add a subtle animated diagonal lines overlay for texture */
     position: relative;
 }
 body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    z-index: 0;
-    background: repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 2px, transparent 2px, transparent 16px);
-    animation: bg-move 6s linear infinite;
+    display: none;
 }
 @keyframes bg-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 64px 64px; }
+    /* removed */
 }
 
 .info-bar {
@@ -160,7 +205,6 @@ main {
 /* Prevent links from being clickable while hidden */
 .socials-fixed-wrapper.hide .social-link {
     pointer-events: none !important;
-}
 }
 
 .socials-blue-box {
