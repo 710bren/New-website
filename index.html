@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brendan | Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="center-title-wrapper" id="centerTitleWrapper">
+        <h1 class="center-title">BRENDAN</h1>
+    </div>
+    <main>
+        <section id="home">
+            <!-- Empty, handled by fixed title -->
+        </section>
+        <section id="socials">
+            <div style="height: 100vh;"></div>
+            <div class="socials-fixed-wrapper hide" id="socialsFixedWrapper">
+                <div class="socials-blue-box">
+                    <h2>Connect with me</h2>
+                    <div class="social-links-grid">
+                        <a class="social-link" href="https://discord.gg/yourserver" target="_blank">
+                            <span class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" alt="Discord" style="width: 28px; height: 28px; vertical-align: middle;"></span> Discord
+                        </a>
+                        <a class="social-link" href="https://github.com/yourprofile" target="_blank">
+                            <span class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" style="width: 28px; height: 28px; vertical-align: middle;"></span> GitHub
+                        </a>
+                        <a class="social-link" href="https://instagram.com/yourprofile" target="_blank">
+                            <span class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" style="width: 28px; height: 28px; vertical-align: middle;"></span> Instagram
+                        </a>
+                        <a class="social-link" href="https://reddit.com/user/yourprofile" target="_blank">
+                            <span class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/reddit.svg" alt="Reddit" style="width: 28px; height: 28px; vertical-align: middle;"></span> Reddit
+                        </a>
+                        <a class="social-link" href="https://youtube.com/@yourchannel" target="_blank">
+                            <span class="icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg" alt="YouTube" style="width: 28px; height: 28px; vertical-align: middle;"></span> YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- The static version for accessibility/SEO -->
+            <div class="socials-blue-box socials-static" style="opacity:0;pointer-events:none;position:static;"></div>
+        </section>
+        <section id="info">
+            <div style="height: 100vh;"></div>
+            <div class="info-fixed-wrapper hide" id="infoFixedWrapper">
+                <div class="footer-box">
+                    <div class="socials-blue-box info-inner-box">
+                        <div class="info-content">
+                            <span>Contact: <a href="mailto:your@email.com">your@email.com</a></span>
+                            <span>© 2025 Brendan. All rights reserved.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+    // Hide the fixed title when scrolling to socials and info
+    window.addEventListener('scroll', function() {
+        const wrapper = document.getElementById('centerTitleWrapper');
+        const socials = document.getElementById('socials');
+        const socialsFixed = document.getElementById('socialsFixedWrapper');
+        const info = document.getElementById('info');
+        const infoFixed = document.getElementById('infoFixedWrapper');
+        const trigger = socials.getBoundingClientRect().top + window.scrollY - window.innerHeight/2;
+        const socialsBox = socialsFixed;
+        const infoTrigger = info.getBoundingClientRect().top + window.scrollY - window.innerHeight/2;
+
+        // Title fade out when socials comes in
+        if(window.scrollY > trigger) {
+            wrapper.classList.add('hide');
+            socialsBox.classList.remove('hide');
+        } else {
+            wrapper.classList.remove('hide');
+            socialsBox.classList.add('hide');
+        }
+
+        // Socials fade out when info comes in
+        if(window.scrollY > infoTrigger) {
+            socialsBox.classList.add('hide');
+            infoFixed.classList.remove('hide');
+        } else {
+            infoFixed.classList.add('hide');
+        }
+    });
+
+    window.addEventListener('beforeunload', function() {
+        window.scrollTo(0, 0);
+    });
+    </script>
+</body>
+</html>
